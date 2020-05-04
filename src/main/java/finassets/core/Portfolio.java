@@ -1,7 +1,5 @@
 package finassets.core;
 
-import finassets.core.assets.Money;
-
 import java.util.*;
 
 public class Portfolio {
@@ -34,13 +32,15 @@ public class Portfolio {
         transaction.ifPresent(transactions::add);
     }
 
-    public Map<Currency, Double> reduceSameCurrency() {
+    public Map<Currency, Double> reduceWithSameCurrency() {
         Map<Currency, Double> sum = new HashMap<Currency, Double>();
         for (Transaction item:transactions) {
-            if (!item.isAssetOf(Money.class)) {
-                continue;
-            }
+            Currency currency = item.getCurrency();
+            double amount = item.getPrice().getAmount();
+            sum.replace(currency, sum.get(currency) + amount);
+
         }
+        return sum;
     }
 
 }

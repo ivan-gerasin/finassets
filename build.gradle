@@ -24,8 +24,12 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.2-jre'
 
+    // https://mvnrepository.com/artifact/com.google.code.findbugs/annotations
+    compile group: 'com.google.code.findbugs', name: 'annotations', version: '3.0.0'
+
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+
 }
 
 application {

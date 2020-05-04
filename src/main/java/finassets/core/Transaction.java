@@ -2,8 +2,8 @@ package finassets.core;
 
 import finassets.core.assets.Asset;
 import finassets.core.assets.Money;
-import org.checkerframework.checker.units.qual.A;
 
+import java.util.Currency;
 import java.util.Date;
 
 public class Transaction {
@@ -12,7 +12,7 @@ public class Transaction {
     private final int number;
     private final Money price;
 
-    Transaction(final Asset anAsset, final int aNumber, final Money aPrice) {
+    Transaction(final Asset anAsset, final int aNumber,  Money aPrice) {
         dateTime = new Date();
         asset = anAsset;
         number = aNumber;
@@ -29,5 +29,24 @@ public class Transaction {
     public boolean isAssetOf(final Class anAssetType) {
         return anAssetType.isInstance(this.asset);
     }
-    
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public Currency getCurrency() {
+        return price.getCurrency();
+    }
+
+    public boolean equals(Transaction other) {
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
+
+class MissingAssetInTransactionException extends Exception {}
+class MissingPriceInTransactionException extends Exception {}

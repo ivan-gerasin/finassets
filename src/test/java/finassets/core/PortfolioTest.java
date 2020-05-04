@@ -43,22 +43,22 @@ public class PortfolioTest {
         assertFalse(addedTransaction.isPresent());
     }
 
-    @Test
-    public void reducePortfolioToBunchOfMoney() {
-        Share rubShare = testShare; //MOEX:SBER Rub
-        Share usdShare = new Share("APPL", "NASDAQ");
-        Money rubSum = testSum;
-        Money usdSum = new Money(100, "USD");
-
-        Transaction rubTransaction = new Transaction(rubShare, 1, rubSum);
-        Transaction usdTransaction = new Transaction(usdShare, 2, usdSum);
-        portfolio.add(Optional.of(rubTransaction));
-        portfolio.add(Optional.of(usdTransaction));
-
-        Map<Currency, Double> monies = portfolio.reduceSameCurrency();
-        assertEquals(monies.size(), 2);
-        assertEquals(monies.get(Currency.getInstance("RUB")), new Double(200));
-    }
+//    @Test
+//    public void reducePortfolioToBunchOfMoney() {
+//        Share rubShare = testShare; //MOEX:SBER Rub
+//        Share usdShare = new Share("APPL", "NASDAQ");
+//        Money rubSum = testSum;
+//        Money usdSum = new Money(100, "USD");
+//
+//        Transaction rubTransaction = new Transaction(rubShare, 1, rubSum);
+//        Transaction usdTransaction = new Transaction(usdShare, 2, usdSum);
+//        portfolio.add(Optional.of(rubTransaction));
+//        portfolio.add(Optional.of(usdTransaction));
+//
+//        Map<Currency, Double> monies = portfolio.reduceSameCurrency();
+//        assertEquals(monies.size(), 2);
+//        assertEquals(monies.get(Currency.getInstance("RUB")), new Double(200));
+//    }
 
 
 }
