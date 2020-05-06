@@ -6,7 +6,7 @@ public class Portfolio {
 
     private String name;
 
-    private final ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private final Set<Transaction> transactions = new HashSet<Transaction>();
 
     Portfolio(String aName) {
         name = aName;

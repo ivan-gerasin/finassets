@@ -39,12 +39,23 @@ public class Transaction {
     }
 
     public boolean equals(Transaction other) {
-        return false;
+        if (this == other) return true;
+        if (other == null) return false;
+
+        return  dateTime.equals(other.dateTime) &&
+                asset.equals(other.asset) &&
+                number == other.number &&
+                price.equals(other.price);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int hash = 7;
+        hash = 31 * hash + dateTime.hashCode();
+        hash = 31 * hash + asset.hashCode();
+        hash = 31 * hash + number;
+        hash = 31 * hash + price.hashCode();
+        return hash;
     }
 }
 

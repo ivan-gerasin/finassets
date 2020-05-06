@@ -12,4 +12,12 @@ public class Share extends Security {
     public String toString() {
         return String.format("%s:%s", stockExchange, ticker);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 32 * hash + ticker.hashCode();
+        hash = 32 * hash + stockExchange.hashCode();
+        return hash;
+    }
 }
