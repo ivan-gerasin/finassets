@@ -13,10 +13,7 @@ public class Transaction {
     private final Money price;
 
     Transaction(final Asset anAsset, final int aNumber,  Money aPrice) {
-        dateTime = new Date();
-        asset = anAsset;
-        number = aNumber;
-        price = aPrice;
+        this(anAsset, aNumber, aPrice, new Date());
     }
 
     Transaction(final Asset anAsset, final int aNumber, final Money aPrice, final Date aDate) {
@@ -36,6 +33,10 @@ public class Transaction {
 
     public Currency getCurrency() {
         return price.getCurrency();
+    }
+
+    public Asset getAsset() {
+        return asset;
     }
 
     public boolean equals(Transaction other) {

@@ -1,46 +1,25 @@
 package finassets.core;
 
-import java.util.*;
+import finassets.core.assets.Asset;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class Portfolio {
 
-    private String name;
+    private ArrayList<PortfolioItem> assets = new ArrayList<>();
 
-    private final Set<Transaction> transactions = new HashSet<Transaction>();
-
-    Portfolio(String aName) {
-        name = aName;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public int getSize() {
-        return transactions.size();
-    }
-
-    public Optional<Transaction> get(final int index) {
-        try {
-            return Optional.of(transactions.get(index));
-        } catch (IndexOutOfBoundsException err) {
-            return Optional.empty();
+    Portfolio(HashMap<Asset, Integer> anAssets) {
+        for (HashMap.Entry<Asset, Integer> item : anAssets.entrySet()) {
+            Asset asset = item.getKey();
+            int number = item.getValue();
+            assets.add(new PortfolioItem(number, asset));
         }
     }
 
-    public void add(final Optional<Transaction> transaction) {
-        transaction.ifPresent(transactions::add);
-    }
-
-    public Map<Currency, Double> reduceWithSameCurrency() {
-        Map<Currency, Double> sum = new HashMap<Currency, Double>();
-        for (Transaction item:transactions) {
-            Currency currency = item.getCurrency();
-            double amount = item.getPrice().getAmount();
-            sum.replace(currency, sum.get(currency) + amount);
-
-        }
-        return sum;
+    public int size() {
+        return assets.size();
     }
 
 }
